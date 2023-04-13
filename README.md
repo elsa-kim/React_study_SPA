@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# SPA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 프로젝트에 리액트 라우터 적용
 
-## Available Scripts
+- src/index.js 파일에서 react-router-dom에 내장되어 있는 BrowserRouter라는 컴포넌트를 사용하여 감싸면 됨
 
-In the project directory, you can run:
+### Route 컴포넌트로 특정 주소에 컴포넌트 연결
 
-### `yarn start`
+- 사용방식 : <Route path="주소규칙" component={보여 줄 컴포넌트} />
+- path props를 배열로 설정해 주면 여러 경로에서 같은 컴포넌트 보여줄 수 있음
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Link 컴포넌트 사용해 다른 주소로 이동
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 사용방식 : <Link to="주소">내용</Link>
+- 일반 웹 애플리케이션에서는 a 태그 사용해 페이지 전환하지만 리액트 라우터 사용할 땐 a 태그 직접 사용 X
+  : 페이지 전환하는 과정에서 페이지 새로 불러오기 때문에 애플리케이션이 들고 있던 상태들 모두 날려 렌더링된 컴포넌트들도 모두 사라지고 다시 처음부터 렌더링하게 됨
+- Link 컴포넌트 자체는 a 태그로 이뤄져있지만 페이지 전환하는 기능 내장
+  : 페이지 새로 불러오지 않고 애플리케이션은 그대로 유지한 상태에서 HTML5 History API 사용해 페이지 주소만 변경해줌
 
-### `yarn test`
+### URL 파라미터와 쿼리
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 일반적으로 파라미터는 특정 아이디나 이름을 사용해 조회할 때 사용하고, 쿼리는 어떤 키워드 검색하거나 페이지에 필요한 옵션을 전달할 때 사용
+- 쿼리는 라우트 컴포넌트에게 props로 전달되는 location 객체에 있는 search 값에서 읽어올 수 있음 -> 문자열 형태로 되어있어 qs 라이브러리 사용해 객체 형태로 변환
 
-### `yarn build`
+### Switch
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Switch 컴포넌트는 여러 Route를 감싸서 그 중 일치하는 단 하나의 라우트만을 렌더링시켜줌
+- 모든 규칙과 일치하지 않을 때 보여줄 Not Found 페이지도 구현 가능
